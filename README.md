@@ -17,7 +17,7 @@ No final você terá um ambiente LAMP e um Laravel 5.8, pronto para ser trabalha
 
 ```shell
 echo -e "\033[1;92m Clonando...\033[m" &&\
-git clone git@github.com:dindigital/teste-back-end-2019.git &&\
+git clone git@github.com:erickfirmo/teste-back-end-2019.git &&\
 echo -e "\033[1;92m Entrando na pasta do repositório clonado...\033[m" &&\
 cd teste-back-end-2019 &&\
 echo -e "\033[1;92m Entrando na pasta docker...\033[m" &&\
