@@ -17,7 +17,7 @@ No final você terá um ambiente LAMP e um Laravel 5.8, pronto para ser trabalha
 
 ```shell
 echo -e "\033[1;92m Clonando...\033[m" &&\
-git clone git@github.com:dindigital/teste-back-end-2019.git &&\
+git clone git@github.com:erickfirmo/teste-back-end-2019.git &&\
 echo -e "\033[1;92m Entrando na pasta do repositório clonado...\033[m" &&\
 cd teste-back-end-2019 &&\
 echo -e "\033[1;92m Entrando na pasta docker...\033[m" &&\
@@ -41,7 +41,8 @@ python -m webbrowser "http://localhost" > /dev/null 2>&1
 ```
 
 ## Requisitos de desenvolvimento ##
-- [Postman](https://www.getpostman.com/downloads/) - Utilizar esta documentaçao: https://documenter.getpostman.com/view/2284246/S1a8yjgh?version=latest
+- [Postman](https://www.getpostman.com/downloads/) - Utilizar esta documentaçao: 
+https://documenter.getpostman.com/view/2284246/SVmzvcZv?version=latest#intro
 - Utilizar biblioteca: [Laravel Responder](https://github.com/flugger/laravel-responder)
 - Utilizar biblioteca: [JWT 1.0.0-rc.4.1](https://jwt-auth.readthedocs.io/en/develop/laravel-installation/) 
 
