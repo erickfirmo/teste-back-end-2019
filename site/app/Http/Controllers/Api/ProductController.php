@@ -16,17 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
-    }
+        return responder()->success(Product::all())->respond(202, ['success' => true]);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -37,7 +28,18 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        //
+        $request->validated();
+
+        $product = new Product;
+        $product->name = $request->input('name');
+        $product->price = $request->input('price');
+        //grams
+        $product->weight = $request->input('weight');
+        // X Y Z cm
+        $product->size = $request->input('size');
+        $product->save();
+
+        return responder()->success($product)->respond(201, ['messages' => true]);
     }
 
     /**
@@ -48,18 +50,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return responder()->success(Product::findOrFail($id))->respond(200, ['messages' => true]);
     }
 
     /**
@@ -71,7 +62,14 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, $id)
     {
-        //
+        $product = Product::findOrFail($id)->update([
+            'name' => $request->name,
+            'price' => $request->price,
+            'weight' => $request->weight,
+            'size' => $request->size,
+        ]);
+
+        return responder()->success($product)->respond(204, ['messages' => true]);
     }
 
     /**
@@ -82,6 +80,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Product::findOrFail($id)->delete();
+        
+        return responder()->success()->respond(200, ['messages' => true]);
     }
 }
