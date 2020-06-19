@@ -16,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return responder()->success(Product::all())->respond(202, ['success' => true]);
+        return responder()->success(Product::all())->respond(200, ['success' => true]);
     }
 
     /**
@@ -38,7 +38,7 @@ class ProductController extends Controller
         $product->size = $request->input('size');
         $product->save();
 
-        return responder()->success($product)->respond(201, ['message' => true]);
+        return responder()->success($product)->respond(201, ['success' => true]);
     }
 
     /**
@@ -51,15 +51,7 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        if(is_null($product) && $product == false) {
-            $status_code = 200;
-            $status_message = '';
-        } else {
-            $status_message = 204;
-            $status_message = '';
-        }
-
-        return responder()->success($product)->respond($status, ['message' => $status_message]);
+        return responder()->success($product)->respond(200, ['success' => true]);
     }
 
     /**
@@ -78,7 +70,7 @@ class ProductController extends Controller
             'size' => $request->size,
         ]);
 
-        return responder()->success($product)->respond(204, ['message' => true]);
+        return responder()->success($product)->respond(204, ['success' => true]);
     }
 
     /**
@@ -91,6 +83,6 @@ class ProductController extends Controller
     {
         Product::findOrFail($id)->delete();
 
-        return responder()->success()->respond(200, ['message' => true]);
+        return responder()->success()->respond(200, ['success' => true]);
     }
 }
