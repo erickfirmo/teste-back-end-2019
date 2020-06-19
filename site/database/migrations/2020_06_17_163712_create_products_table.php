@@ -19,6 +19,8 @@ class CreateProductsTable extends Migration
             $table->float('price', 10, 2);
             //grams
             $table->bigInteger('weight');
+            // X Y cm
+            $table->string('size', 30);
             $table->timestamps();
         });
     }
