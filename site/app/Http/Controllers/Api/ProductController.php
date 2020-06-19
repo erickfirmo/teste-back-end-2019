@@ -49,7 +49,17 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        return responder()->success(Product::findOrFail($id))->respond(200, ['message' => true]);
+        $product = Product::findOrFail($id);
+
+        if(is_null($product) && $product == false) {
+            $status_code = 200;
+            $status_message = '';
+        } else {
+            $status_message = 204;
+            $status_message = '';
+        }
+
+        return responder()->success($product)->respond($status, ['message' => $status_message]);
     }
 
     /**
