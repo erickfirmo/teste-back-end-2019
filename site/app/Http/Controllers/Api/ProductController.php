@@ -17,7 +17,6 @@ class ProductController extends Controller
     public function index()
     {
         return responder()->success(Product::all())->respond(202, ['success' => true]);
-
     }
 
     /**
@@ -39,7 +38,7 @@ class ProductController extends Controller
         $product->size = $request->input('size');
         $product->save();
 
-        return responder()->success($product)->respond(201, ['messages' => true]);
+        return responder()->success($product)->respond(201, ['message' => true]);
     }
 
     /**
@@ -50,7 +49,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        return responder()->success(Product::findOrFail($id))->respond(200, ['messages' => true]);
+        return responder()->success(Product::findOrFail($id))->respond(200, ['message' => true]);
     }
 
     /**
@@ -69,7 +68,7 @@ class ProductController extends Controller
             'size' => $request->size,
         ]);
 
-        return responder()->success($product)->respond(204, ['messages' => true]);
+        return responder()->success($product)->respond(204, ['message' => true]);
     }
 
     /**
@@ -81,7 +80,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         Product::findOrFail($id)->delete();
-        
-        return responder()->success()->respond(200, ['messages' => true]);
+
+        return responder()->success()->respond(200, ['message' => true]);
     }
 }
