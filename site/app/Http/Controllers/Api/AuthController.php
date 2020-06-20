@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\AuthRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use JWTAuth;
@@ -25,17 +26,15 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login(Request $request)
+    public function login(AuthRequest $request)
     {
-        //$token = auth('api')->attempt($credentials);
+        
+        $request->validated();
 
         $credentials = $request->only(['email', 'password']);
-
         $email = $request->input('erickluques@gmail.com');
         $password = $request->input('password');
-
         $user = User::where('email', $credentials['email'])->first();
-
 
         // Generate Token
         $token = JWTAuth::fromUser($user);
