@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Api;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Api\ApiFormRequest;
 
 class AuthRequest extends FormRequest
 {
@@ -27,6 +27,7 @@ class AuthRequest extends FormRequest
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6'
         ];
+        
     }
 
     public function messages()
@@ -35,5 +36,17 @@ class AuthRequest extends FormRequest
             'email.required' => 'Email é obrigatório!',
             'password.required' => 'Senha é obrigatória!'
         ];
+    }
+
+    public function response(array $errors)
+    {
+
+        if($this->expectsJson())
+        {
+            return new JsonResponse($errors, 422);
+        }
+
+        //return redirect()->route('login');
+
     }
 }
