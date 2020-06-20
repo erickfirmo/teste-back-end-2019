@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use JWTAuth;
+use App\User;
+use Auth;
 
 class AuthController extends Controller
 {
@@ -12,10 +15,10 @@ class AuthController extends Controller
      *
      * @return void
      */
-    /*public function __construct()
+    public function __construct()
     {
         $this->middleware('auth:api', ['except' => ['login']]);
-    }*/
+    }
 
     /**
      * Get a JWT via given credentials.
@@ -24,13 +27,29 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
+        //$token = auth('api')->attempt($credentials);
+
         $credentials = $request->only(['email', 'password']);
 
-        if(!$token = auth('api')->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
+        $email = $request->input('erickluques@gmail.com');
+        $password = $request->input('password');
 
-        return $this->respondWithToken($token);
+        $user = User::where('email', $credentials['email'])->first();
+
+
+        // Generate Token
+        $token = JWTAuth::fromUser($user);
+
+        // Get expiration time
+        $objectToken = JWTAuth::setToken($token);
+        $expiration = JWTAuth::decode($objectToken->getToken())->get('exp');
+
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => auth('api')->factory()->getTTL() * 60
+        ]);
+
     }
 
     /**
