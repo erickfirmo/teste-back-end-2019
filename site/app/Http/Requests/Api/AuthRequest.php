@@ -37,16 +37,4 @@ class AuthRequest extends ApiFormRequest
             'password.required' => 'Senha é obrigatória!'
         ];
     }
-
-    public function response(array $errors)
-    {
-
-        if($this->expectsJson())
-        {
-            return new JsonResponse($errors, 422);
-        }
-
-        //return redirect()->route('login');
-
-    }
 }
