@@ -84,7 +84,10 @@ class AuthController extends Controller
      */
     public function refresh()
     {
-        return $this->respondWithToken(auth('api')->refresh());
+        auth('api')->refresh();
+
+        return response()->json(['message' => 'Acesso não autorizado.'],403);
+       
     }
 
     /**
