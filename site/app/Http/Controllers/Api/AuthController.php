@@ -64,7 +64,9 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return response()->json(auth('api')->user());
+        $user = User::select('id', 'name','email')->where('id', auth('api')->user()->id)->get();
+
+        return responder()->success($user)->respond(200, ['success' => true]);        
     }
 
     /**
@@ -76,7 +78,7 @@ class AuthController extends Controller
     {
         auth('api')->logout();
 
-        return responder()->success(['message' => 'Usuário deslogado com sucesso.'])->respond(200, ['success' => true]);        
+        return responder()->success(['message' => 'Usuário deslogado com sucesso'])->respond(200, ['success' => true]);        
     }
 
     /**
@@ -88,7 +90,7 @@ class AuthController extends Controller
     {
         auth('api')->refresh();
 
-        return response()->json(['message' => 'Acesso não autorizado.'],403);
+        return response()->json(['message' => 'Acesso não autorizado'],403);
        
     }
 
