@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// SiteController
+
+Route::get('/', 'SiteController@index')->name('home');
+
+Route::get('/doc', 'SiteController@doc')->name('doc');
