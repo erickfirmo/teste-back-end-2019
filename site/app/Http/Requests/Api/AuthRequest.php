@@ -4,7 +4,7 @@ namespace App\Http\Requests\Api;
 
 use App\Http\Requests\Api\ApiFormRequest;
 
-class AuthRequest extends FormRequest
+class AuthRequest extends ApiFormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
