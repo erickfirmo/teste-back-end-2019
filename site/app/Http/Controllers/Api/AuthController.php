@@ -44,8 +44,7 @@ class AuthController extends Controller
 
         return responder()->success([
             'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60
+            'expires_in_seconds' => auth('api')->factory()->getTTL() * 60
         ])->respond(200, ['success' => true]);        
 
 
