@@ -28,7 +28,6 @@ class AuthController extends Controller
      */
     public function login(AuthRequest $request)
     {
-        
         $request->validated();
 
         $credentials = $request->only(['email', 'password']);
@@ -43,11 +42,12 @@ class AuthController extends Controller
         $objectToken = JWTAuth::setToken($token);
         $expiration = JWTAuth::decode($objectToken->getToken())->get('exp');
 
-        return response()->json([
+        return responder()->success([
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60
-        ]);
+        ])->respond(200, ['success' => true]);        
+
 
     }
 
@@ -70,7 +70,7 @@ class AuthController extends Controller
     {
         auth('api')->logout();
 
-        return response()->json(['message' => 'Successfully logged out']);
+        return responder()->success(['message' => 'Usuário deslogado com sucesso.'])->respond(200, ['success' => true]);        
     }
 
     /**
@@ -92,10 +92,10 @@ class AuthController extends Controller
      */
     protected function respondWithToken($token)
     {
-        return response()->json([
+        return responder()->success([
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth('api')->factory()->getTTL() * 60
-        ]);
+        ])->respond(200, ['success' => true]);       
     }
 }
