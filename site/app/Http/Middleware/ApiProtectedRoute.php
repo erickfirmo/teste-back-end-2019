@@ -7,7 +7,7 @@ use Tymon\JWTAuth\Http\Middleware\BaseMiddleware;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\Facades\JWTAuth;
+use JWTAuth;
 
 class ApiProtectedRoute extends BaseMiddleware
 {
@@ -25,7 +25,7 @@ class ApiProtectedRoute extends BaseMiddleware
 
         } catch (\Exceptions $e) {
 
-            if($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException) {
+            /*if($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException) {
                 return response()->json(['status' => 'Token is Invalid']);
 
             } else if($e instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException) {
@@ -34,7 +34,10 @@ class ApiProtectedRoute extends BaseMiddleware
             } else {
                 return response()->json(['status' => 'Authorization Token not found']);
 
-            }
+            }*/
+
+            return response()->json(['status' => 'Token is Invalid']);
+
         }
 
         return $next($request);
