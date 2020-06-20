@@ -35,6 +35,11 @@ class AuthController extends Controller
         $password = $request->input('password');
         $user = User::where('email', $credentials['email'])->first();
 
+        // Check User
+        if(!$user) {
+            return response()->json(['message' => 'Usuário ou senha inválida']);
+        }
+
         // Generate Token
         $token = JWTAuth::fromUser($user);
 
@@ -93,8 +98,7 @@ class AuthController extends Controller
     {
         return responder()->success([
             'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60
+            'expires_in_seconds' => auth('api')->factory()->getTTL() * 60
         ])->respond(200, ['success' => true]);       
     }
 }
