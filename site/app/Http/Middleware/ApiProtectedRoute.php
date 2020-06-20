@@ -6,8 +6,9 @@ use Closure;
 use Tymon\JWTAuth\Http\Middleware\BaseMiddleware;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
-//use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Exceptions\JWTException;
 use JWTAuth;
+use Auth;
 
 class ApiProtectedRoute extends BaseMiddleware
 {
@@ -20,25 +21,36 @@ class ApiProtectedRoute extends BaseMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $token= str_replace('Bearer ', "" , $request->header('Authorization'));
 
-        try { 
-            JWTAuth::setToken($token);
+        if(!Auth::guard('api')->check())
+        {
+            return response()->json(['message' => 'Acesso não autorizado']);
 
-            if (!$claim = JWTAuth::getPayload()) {
-                return response()->json(array('message' => 'Usuário ou senha inválida'), 401);
-            }
+        } else {
 
-        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-            return response()->json(array('message' => 'Token Expirado'), 401);
+            $token = str_replace('Bearer ', "" , $request->header('Authorization'));
 
-        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-            return response()->json(array('message' => 'Token Inválido'), 401);
+            try { 
+                JWTAuth::setToken($token);
+    
+                if (!$claim = JWTAuth::getPayload()) {
+                    return response()->json(['message' => 'Usuário ou senha inválida'], 401);
+                }
+    
+            } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+                return response()->json(['message' => 'Token Expirado'], 401);
+    
+            } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+                return response()->json(['message' => 'Token Inválido'], 401);
+    
+            } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+                return response()->json(['message' => 'Token Ausente'], 401);
+    
+            } 
 
-        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
-            return response()->json(array('message' => 'Token Ausente'), 401);
-
-        } 
+        }
+        
+        
 
         
         return $next($request);
