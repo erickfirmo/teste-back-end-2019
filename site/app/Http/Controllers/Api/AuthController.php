@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\AuthRequest;
+use App\Http\Requests\Api\AuthRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use JWTAuth;
