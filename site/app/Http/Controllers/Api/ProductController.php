@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\ProductRequest;
+use App\Http\Requests\Api\ProductRequest;
 use App\Http\Controllers\Controller;
 use App\Product;
 
@@ -27,7 +27,9 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $request->validated();
+        $validated = $request->validated();
+
+        return response()->josn($validated);
 
         $product = new Product;
         $product->name = $request->input('name');
