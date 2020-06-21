@@ -22,9 +22,9 @@ class ApiProtectedRoute extends BaseMiddleware
     public function handle($request, Closure $next)
     {
 
-        if(!Auth::guard('api')->check())
-        {
+        if(!Auth::guard('api')->check()) {
             return response()->json(['message' => 'Acesso não autorizado']);
+            //return responder()->error('401', 'Acesso não autorizado')->respond(401, ['x-foo' => true]);
 
         } else {
 
@@ -35,17 +35,22 @@ class ApiProtectedRoute extends BaseMiddleware
     
                 if (!$claim = JWTAuth::getPayload()) {
                     return response()->json(['message' => 'Usuário ou senha inválida'], 401);
+                    //return responder()->error('401', 'Usuário ou senha inválida')->respond(401, ['x-foo' => true]);
+
                 }
     
             } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
                 return response()->json(['message' => 'Token Expirado'], 401);
-    
+                //return responder()->error('401', 'Token Expirado')->respond(401, ['x-foo' => true]);
+
             } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
                 return response()->json(['message' => 'Token Inválido'], 401);
-    
+                //return responder()->error('401', 'Token Inválido')->respond(401, ['x-foo' => true]);
+
             } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
                 return response()->json(['message' => 'Token Ausente'], 401);
-    
+                //return responder()->error('401', 'Token Ausente')->respond(401, ['x-foo' => true]);
+
             } 
 
         }
