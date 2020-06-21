@@ -29,8 +29,6 @@ class ProductController extends Controller
     {
         $validated = $request->validated();
 
-        return response()->josn($validated);
-
         $product = new Product;
         $product->name = $request->input('name');
         $product->price = $request->input('price');
