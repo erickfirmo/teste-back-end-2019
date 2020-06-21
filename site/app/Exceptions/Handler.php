@@ -49,7 +49,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if($exception) {
+        if ($exception instanceof MethodNotAllowedHttpException) {
             return response()->json(['message' => 'Not Found!'], 404);
         }
 
