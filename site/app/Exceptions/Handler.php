@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use Exception;
 use  Illuminate\Auth\AuthenticationException as AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -47,6 +48,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if($exception instanceof MethodNotAllowedHttpException) {
+            return response()->json(['data' => ['errors' => [ 404 => 'Rota não definida.']]]);
+        }
+
         return parent::render($request, $exception);
     }
 
