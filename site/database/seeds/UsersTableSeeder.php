@@ -12,6 +12,12 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $user = new App\User;
+        $user->name = 'Suporte';
+        $user->email = 'suporte@dindigital.com';
+        $user->password = 'secret';
+        $user->save();
+
+        $user = new App\User;
         $user->name = 'Érick Firmo';
         $user->email = 'erickluques@gmail.com';
         $user->password = 'secret';
