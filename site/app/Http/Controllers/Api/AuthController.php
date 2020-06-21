@@ -39,7 +39,8 @@ class AuthController extends Controller
 
         // Check User
         if(!$user) {
-            return response()->json(['message' => 'Usuário ou senha inválida']);
+            return response()->json(['message' => 'Usuário ou senha inválida'], 401);
+            //return responder()->error('401', 'Usuário ou senha inválida')->respond(401, ['x-foo' => true]);
         }
 
         // Generate Token
@@ -51,7 +52,7 @@ class AuthController extends Controller
 
         return responder()->success([
             'access_token' => $token,
-            'expires_in_seconds' => auth('api')->factory()->getTTL() * 60
+            'expires_in_seconds' => auth('api')->factory()->getTTL()
         ])->respond(200, ['success' => true]);        
 
 
@@ -64,9 +65,15 @@ class AuthController extends Controller
      */
     public function me()
     {
-        $user = User::select('id', 'name','email')->where('id', auth('api')->user()->id)->get();
+        $user = User::select('id', 'name','email')
+            ->where('id', auth('api')->user()->id)
+            ->get()
+            ->first();
 
-        return responder()->success($user)->respond(200, ['success' => true]);        
+        return response()->json(['data' => $user], 200);
+
+        // Using Laravel Responder
+        // return responder()->success($user)->respond(200, ['success' => true]);
     }
 
     /**
@@ -78,7 +85,10 @@ class AuthController extends Controller
     {
         auth('api')->logout();
 
-        return responder()->success(['message' => 'Usuário deslogado com sucesso'])->respond(200, ['success' => true]);        
+        return response()->json(['message' => 'Usuário deslogado com successo'], 200);
+
+        // Using Laravel Responder
+        // return responder()->success(['message' => 'Usuário deslogado com sucesso'])->respond(200, ['success' => true]);        
     }
 
     /**
@@ -90,9 +100,10 @@ class AuthController extends Controller
     {
         auth('api')->refresh();
 
-        return response()->json(['message' => 'Acesso não autorizado'],403);
+        return response()->json(['message' => 'Acesso não autorizado'], 403);
 
-        //return responder()->success(['message' => 'Usuário deslogado com sucesso'])->respond(200, ['success' => true]);
+        // Using Laravel Responder
+        // return responder()->error('403', 'Acesso não autorizado')->respond(403, ['x-foo' => true]);
     }
 
     /**
@@ -104,9 +115,15 @@ class AuthController extends Controller
      */
     protected function respondWithToken($token)
     {
-        return responder()->success([
+        return response()->json([
             'access_token' => $token,
-            'expires_in_seconds' => auth('api')->factory()->getTTL() * 60
-        ])->respond(200, ['success' => true]);       
+            'expires_in_seconds' => auth('api')->factory()->getTTL()
+        ], 200); 
+
+        // Using Laravel Responder
+        /*return responder()->success([
+            'access_token' => $token,
+            'expires_in_seconds' => auth('api')->factory()->getTTL()
+        ])->respond(200, ['success' => true]);*/   
     }
 }
