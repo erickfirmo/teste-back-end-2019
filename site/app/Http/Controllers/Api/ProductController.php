@@ -81,8 +81,17 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        Product::findOrFail($id)->delete();
+        $product = Product::findOrFail($id);
 
-        return responder()->success()->respond(200, ['success' => true]);
+        dd($product);
+        
+        if(!$product){
+            $product->delete();
+            return responder()->success('200', 'Produto deletado com sucesso!')->respond(200, ['success' => true]);
+        }
+
+        if($product->trashed())
+            return responder()->erro('200', 'Produto deletado com sucesso!')->respond(200, ['success' => true]);
+
     }
 }
