@@ -34,7 +34,7 @@ class AuthRequest extends ApiFormRequest
     {
         return [
             'email.required' => 'Email é obrigatório!',
-            'password.required' => 'Senha é obrigatória!'
+            'password.required' => 'Senha é obrigatória!',
         ];
     }
 }
