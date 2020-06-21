@@ -50,9 +50,6 @@ class ApiProtectedRoute extends BaseMiddleware
 
         }
         
-        
-
-        
         return $next($request);
     }
 }
