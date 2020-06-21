@@ -91,7 +91,8 @@ class AuthController extends Controller
         auth('api')->refresh();
 
         return response()->json(['message' => 'Acesso não autorizado'],403);
-       
+
+        //return responder()->success(['message' => 'Usuário deslogado com sucesso'])->respond(200, ['success' => true]);
     }
 
     /**
