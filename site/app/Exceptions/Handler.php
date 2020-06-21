@@ -7,6 +7,7 @@ use  Illuminate\Auth\AuthenticationException as AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
+
 class Handler extends ExceptionHandler
 {
     /**
@@ -48,8 +49,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-
-        if ($exception instanceof ModelNotFoundException && $request->wantsJson()) {
+        if($exception) {
             return response()->json(['message' => 'Not Found!'], 404);
         }
 
