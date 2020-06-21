@@ -50,10 +50,10 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         if($exception instanceof MethodNotAllowedHttpException || $exception instanceof NotFoundHttpException)
-            return response()->json(['data' => ['message' => 'Rota não definida!']], 404);
+            return responder()->error('404', 'Rota não definida!')->respond(404, ['x-foo' => true]);
 
         if($exception instanceof ModelNotFoundException)
-            return response()->json(['data' => ['message' => 'Registro não encontrado!']], 404);
+            return responder()->error('404', 'Registro não encontrado!')->respond(404, ['x-foo' => true]);
 
         return parent::render($request, $exception);
     }
@@ -62,6 +62,8 @@ class Handler extends ExceptionHandler
     {
         if($request->expectsJson()) {
             return response()->json(['message' => 'Acesso não autorizado'], 401);
+            // Using Laravel Responder
+            //return responder()->error('401', 'Usuário ou senha inválida')->respond(401, ['x-foo' => true]);
         }
 
         return redirect()->guest('login');
