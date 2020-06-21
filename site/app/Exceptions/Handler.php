@@ -6,6 +6,7 @@ use Exception;
 use  Illuminate\Auth\AuthenticationException as AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class Handler extends ExceptionHandler
 {
@@ -48,9 +49,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if($exception instanceof MethodNotAllowedHttpException) {
-            return response()->json(['data' => ['errors' => [ 404 => 'Rota não definida.']]]);
-        }
+        if($exception instanceof MethodNotAllowedHttpException || $exception instanceof NotFoundHttpException)
+            return response()->json(['data' => ['message' => 'Rota não definida!']], 404);
+
+        if($exception instanceof ModelNotFoundException)
+            return response()->json(['data' => ['message' => 'Registro não encontrado!']], 404);
 
         return parent::render($request, $exception);
     }
