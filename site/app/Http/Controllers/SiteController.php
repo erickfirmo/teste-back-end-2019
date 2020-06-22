@@ -13,7 +13,7 @@ class SiteController extends Controller
 
     public function doc()
     {
-        return view('doc');
+        return redirect('https://documenter.getpostman.com/view/9123887/SzzoZuxn?version=latest');
     }
     
 }
