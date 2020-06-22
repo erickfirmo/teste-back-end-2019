@@ -1,13 +1,15 @@
 
 <!DOCTYPE html>
-<html lang="en-gb" dir="ltr">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }" dir="ltr">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Docs | Documentation HTML Template</title>
+    <title>Teste Back-End 2020 | Laravel API</title>
     <link rel="shortcut icon" type="image/png" href="https://via.placeholder.com/20.png" >
     <link href="https://fonts.googleapis.com/css?family=Heebo:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
     <link rel="stylesheet" href="css/main.css" />
     <script src="js/uikit.js"></script>
 </head>
@@ -19,9 +21,10 @@
     <div class="uk-container">
       <div data-uk-navbar>
         <div class="uk-navbar-left">
-          <a class="uk-navbar-item uk-logo uk-visible@m" href="index.html">Teste Back-End 2020</a>
+          <a class="uk-navbar-item uk-logo uk-visible@m" href="index.html">TESTE BACK-END</a>
+          <span>LARAVEL API</span>
           <a class="uk-navbar-toggle uk-hidden@m" href="#offcanvas-docs" data-uk-toggle><span
-              data-uk-navbar-toggle-icon></span> <span class="uk-margin-small-left">Teste Back-End 2020</span></a>
+              data-uk-navbar-toggle-icon></span> <span class="uk-margin-small-left">Teste Back-End 2020<br>Laravel API</span></a>
           <!--<ul class="uk-navbar-nav uk-visible@m">
             <li ><a href="index.html">Home</a></li>
             <li class="uk-active"><a href="doc.html">Docs</a></li>
@@ -54,12 +57,12 @@
           <ul class="uk-navbar-nav uk-visible@m">
             <li>
               <div class="uk-navbar-item">
-                <a class="uk-button uk-button-primary-outline" href="changelog-timeline.html">Changelog</a>
+                <a class="uk-button uk-button-primary-outline" href="changelog-timeline.html"><span class="iconify" data-icon="simple-icons:postman" data-inline="false"></span> See in Postman</a>
               </div>
             </li>
             <li>
               <div class="uk-navbar-item">
-                <a class="uk-button uk-button-success" href="contact.html">Contact</a>
+                <a class="uk-button uk-button-success" href="contact.html"><i class="fab fa-github"></i> See on Github</a>
               </div>
             </li>
           </ul>
@@ -76,39 +79,46 @@
     <div class="uk-grid-large" data-uk-grid>
       <div class="sidebar-fixed-width uk-visible@m">
         <div class="sidebar-docs uk-position-fixed uk-margin-top">
-          <h5>Endpoints</h5>
-          <ul class="uk-nav uk-nav-default doc-nav">
-            <li class="uk-active"><a href="doc.html"><span>POST </span>Login</a></li>
-            <li class="uk-active"><a href="doc.html"><span>POST </span>Logout</a></li>
-            <li class="uk-active"><a href="doc.html"><span>POST </span>Refresh</a></li>
-            <li class="uk-active"><a href="doc.html"><span>POST </span>Me</a></li>
-          </ul>
-          <h5>Product Features</h5>
-          <ul class="uk-nav uk-nav-default doc-nav">
-            <li><a href="doc.html">Hero page header</a></li>
-            <li><a href="doc.html">Category boxes section</a></li>
-            <li><a href="doc.html">Fearured docs section</a></li>
-            <li><a href="doc.html">Video lightbox boxes section</a></li>
-            <li><a href="doc.html">Frequently asked questions section</a></li>
-            <li><a href="doc.html">Team members section</a></li>
-            <li><a href="doc.html">Call to action section</a></li>
-            <li><a href="doc.html">Creating a changelog</a></li>
-            <li><a href="doc.html">Contact form</a></li>
-            <li><a href="doc.html">Adding media to post and doc content</a></li>
-            <li><a href="doc.html">Adding table of contents to docs</a></li>
-            <li><a href="doc.html">Adding alerts to content</a></li>
-          </ul>
-          <h5>Customization</h5>
-          <ul class="uk-nav uk-nav-default doc-nav">
-            <li><a href="doc.html">Translation</a></li>
-            <li><a href="doc.html">Customization</a></li>
-            <li><a href="doc.html">Development</a></li>
-            <li><a href="doc.html">Sources and credits</a></li>
-          </ul>
-          <h5>Help</h5>
-          <ul class="uk-nav uk-nav-default doc-nav">
-            <li><a href="doc.html">Contacting support</a></li>
-          </ul>
+            <h5>Installation</h5>
+            <ul class="uk-nav uk-nav-default doc-nav">
+                <li class="uk-active"><a href="doc.html">Server Requirements</a></li>
+                <li class="uk-active"><a href="doc.html">Configuration</a></li>
+                <li class="uk-active"><a href="doc.html">Deployment</a></li>
+                
+            </ul>
+            <h5>Endpoints</h5>
+            <ul class="uk-nav uk-nav-default doc-nav">
+                <li class="uk-active"><a href="doc.html"><span>POST </span>Login</a></li>
+                <li class="uk-active"><a href="doc.html"><span>POST </span>Logout</a></li>
+                <li class="uk-active"><a href="doc.html"><span>POST </span>Refresh</a></li>
+                <li class="uk-active"><a href="doc.html"><span>POST </span>Me</a></li>
+            </ul>
+            <h5>Product Features</h5>
+            <ul class="uk-nav uk-nav-default doc-nav">
+                <li><a href="doc.html">Hero page header</a></li>
+                <li><a href="doc.html">Category boxes section</a></li>
+                <li><a href="doc.html">Fearured docs section</a></li>
+                <li><a href="doc.html">Video lightbox boxes section</a></li>
+                <li><a href="doc.html">Frequently asked questions section</a></li>
+                <li><a href="doc.html">Team members section</a></li>
+                <li><a href="doc.html">Call to action section</a></li>
+                <li><a href="doc.html">Creating a changelog</a></li>
+                <li><a href="doc.html">Contact form</a></li>
+                <li><a href="doc.html">Adding media to post and doc content</a></li>
+                <li><a href="doc.html">Adding table of contents to docs</a></li>
+                <li><a href="doc.html">Adding alerts to content</a></li>
+            </ul>
+            <h5>Customization</h5>
+            <ul class="uk-nav uk-nav-default doc-nav">
+                <li><a href="doc.html">Translation</a></li>
+                <li><a href="doc.html">Customization</a></li>
+                <li><a href="doc.html">Development</a></li>
+                <li><a href="doc.html">Sources and credits</a></li>
+            </ul>
+            <h5>Help</h5>
+            <ul class="uk-nav uk-nav-default doc-nav">
+                <li><a href="doc.html">Contacting support</a></li>
+            </ul>
         </div>
       </div>
       <div class="uk-width-1-1 uk-width-expand@m">
