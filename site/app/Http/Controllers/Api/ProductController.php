@@ -38,7 +38,7 @@ class ProductController extends Controller
         $product->size = $request->input('size');
         $product->save();
 
-        return responder()->success($product)->respond(201, ['success' => true]);
+        return responder()->success($product)->respond(200, ['success' => true]);
     }
 
     /**
@@ -73,7 +73,7 @@ class ProductController extends Controller
             'size' => $request->size,
         ]);
 
-        return responder()->success(['message' => 'Produto deletado com sucesso!'])->respond(200, ['success' => true]);
+        return responder()->success(['message' => 'Produto atualizado com sucesso!'])->respond(200, ['success' => true]);
     }
 
     /**
