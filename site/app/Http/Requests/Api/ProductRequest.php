@@ -25,10 +25,10 @@ class ProductRequest extends ApiFormRequest
     public function rules()
     {
         return [
-            //'name' => 'required|string|min:2|max:200|unique:products',
-            //'price' => 'required|numeric|between:XXXX',
-            //'weight' => 'required|numeric|min:1|max:999999',
-            //'size' => 'required|string|x,y,z'
+            'name' => 'required|string|min:2|max:200|unique:products',
+            'price' => 'required|numeric|between:0,99,9999999.99',
+            'weight' => 'required|numeric|min:1|max:999999',
+            'size' => 'required|string|max:30'
         ];
     }
 }
