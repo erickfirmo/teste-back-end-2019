@@ -63,6 +63,9 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, $id)
     {
+        
+        $request->validated();
+
         $product = Product::findOrFail($id)->update([
             'name' => $request->name,
             'price' => $request->price,
@@ -70,7 +73,7 @@ class ProductController extends Controller
             'size' => $request->size,
         ]);
 
-        return responder()->success($product)->respond(204, ['success' => true]);
+        return responder()->success(['message' => 'Produto deletado com sucesso!'])->respond(200, ['success' => true]);
     }
 
     /**
@@ -82,16 +85,13 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
-
-        dd($product);
         
-        if(!$product){
+        if($product) {
             $product->delete();
-            return responder()->success('200', 'Produto deletado com sucesso!')->respond(200, ['success' => true]);
+            return responder()->success(['message' => 'Produto deletado com sucesso!'])->respond(200, ['success' => true]);
+        } else {
+            return responder()->error('403', 'Registro não encontrado!')->respond(404, ['x-foo' => true]);
         }
-
-        if($product->trashed())
-            return responder()->erro('200', 'Produto deletado com sucesso!')->respond(200, ['success' => true]);
 
     }
 }
