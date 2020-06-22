@@ -58,7 +58,7 @@
             <ul class="uk-navbar-nav uk-visible@m">
                 <li>
                 <div class="uk-navbar-item">
-                    <a class="uk-button uk-button-primary-outline" href="https://documenter.getpostman.com/view/9123887/SzzoZuxn?version=latest" target="_blank"><span class="iconify" data-icon="simple-icons:postman" data-inline="false"></span> See in Postman</a>
+                    <a class="uk-button uk-button-primary-outline" href="https://documenter.getpostman.com/view/9123887/SzzoZuxn?version=latest" target="_blank"><span class="iconify" data-icon="simple-icons:postman" data-inline="false"></span> See on Postman</a>
                 </div>
                 </li>
                 <li>
