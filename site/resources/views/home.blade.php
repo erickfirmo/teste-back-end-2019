@@ -58,12 +58,12 @@
             <ul class="uk-navbar-nav uk-visible@m">
                 <li>
                 <div class="uk-navbar-item">
-                    <a class="uk-button uk-button-primary-outline" href="changelog-timeline.html"><span class="iconify" data-icon="simple-icons:postman" data-inline="false"></span> See in Postman</a>
+                    <a class="uk-button uk-button-primary-outline" href="https://documenter.getpostman.com/view/9123887/SzzoZuxn?version=latest" target="_blank"><span class="iconify" data-icon="simple-icons:postman" data-inline="false"></span> See in Postman</a>
                 </div>
                 </li>
                 <li>
                 <div class="uk-navbar-item">
-                    <a class="uk-button uk-button-success" href="contact.html"><i class="fab fa-github"></i> See on Github</a>
+                    <a class="uk-button uk-button-success" href="https://github.com/erickfirmo/teste-back-end-2020" target="_blank"><i class="fab fa-github"></i> See on Github</a>
                 </div>
                 </li>
             </ul>
@@ -76,10 +76,10 @@
     </div>
 	<div class="uk-section section-hero uk-position-relative" data-uk-scrollspy="cls: uk-animation-slide-bottom-medium; repeat: true">
 		<div class="uk-container uk-container-small">
-			<p class="hero-image uk-text-center"><img src="https://via.placeholder.com/200x110" alt="Hero"></p>
+			<!--<p class="hero-image uk-text-center"><img src="img/logo.png" alt="Logo Mini Rest API Laravel"></p>-->
+            <br>
 			<h1 class="uk-heading-medium uk-text-center uk-margin-remove-top">TESTE BACK-END</h1>
-			<p class="uk-text-lead uk-text-center">Mini API Rest utilizando Laravel como framework PHP, JWT como autenticação e um simples CRUD.</p>
-			
+			<p class="uk-text-lead uk-text-center">Mini Rest API using the Laravel framework and PHP, JWT as authentication and a simple CRUD.</p>
 		</div>
 	</div>
 </header>
@@ -104,7 +104,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="uk-margin-medium uk-text-small copyright link-secondary">Desenvolvido por <a
+		<div class="uk-margin-medium uk-text-small copyright link-secondary">Developed by <a
 				href="https://github.com/erickfirmo">Érick Firmo</a>.</div>
 	</div>
 </footer>
