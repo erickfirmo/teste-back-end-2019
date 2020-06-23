@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Teste Back-End 2020 | Laravel API</title>
-    <link rel="shortcut icon" type="image/png" href="https://via.placeholder.com/20.png" >
     <link href="https://fonts.googleapis.com/css?family=Heebo:300,400" rel="stylesheet">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
